@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Чувакина М. В.">
+  <title>Презентация по лабораторной работе №6</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <style type="text/css">Not found: /reveal.js@4.6.1//dist/reset.css</style>
+  <style type="text/css">Not found: /reveal.js@4.6.1//dist/reveal.css</style>
+  <style>
+.reveal .sourceCode { 
+overflow: visible;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">Not found: /reveal.js@4.6.1//dist/theme/beige.css</style>
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по лабораторной работе №6</h1>
+  <p class="subtitle">Основы информационной безопасности</p>
+  <p class="author">Чувакина М. В.</p>
+  <p class="institute">Российский университет дружбы народов, Москва,
+Россия</p>
+  <p class="date">28 апреля 2025</p>
+</section>
+
+<section>
+<section id="информация" class="title-slide slide level1">
+<h1>Информация</h1>
+
+</section>
+<section id="докладчик" class="slide level2">
+<h2>Докладчик</h2>
+<div class="columns" data-align="center">
+<div class="column" style="width:70%;">
+<ul>
+<li>Чувакина Мария Владимировна</li>
+<li>студентка группы НКАбд-03-23</li>
+<li>Российский университет дружбы народов</li>
+<li><a href="mailto:1132236055@rudn.ru">1132236055@rudn.ru</a></li>
+<li><a href="https://mvchuvakina.github.io/ru/" class="uri">https://mvchuvakina.github.io/ru/</a></li>
+</ul>
+</div><div class="column" style="width:30%;">
+
+</div>
+</div>
+</section>
+<section id="цель" class="slide level2">
+<h2>Цель</h2>
+<p>Развить навыки администрирования ОС Linux. Получить первое
+практическое знакомство с технологией SELinux1. Проверить работу SELinx
+на практике совместно с веб-сервером Apache.</p>
+</section></section>
+<section>
+<section id="выполнение-лабораторной-работы" class="title-slide slide level1">
+<h1>Выполнение лабораторной работы</h1>
+
+</section>
+<section id="выполнение-лабораторной-работы-1" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>SELinux работает в режиме enforcing политики targeted с помощью
+команд getenforce и sestatus</p>
+<figure id="fig:001">
+<img role="img" aria-label="проверка режима работы SELinux" data-src="image/1.png" style="width:70.0%" alt="проверка режима работы SELinux" />
+<figcaption aria-hidden="true">проверка режима работы
+SELinux</figcaption>
+</figure>
+</section>
+<section id="выполнение-лабораторной-работы-2" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Запускаю сервер apache, далее обращаюсь с помощью браузера к
+веб-серверу, запущенному на компьютере, он работает, что видно из вывода
+команды <code>service httpd status</code></p>
+<figure id="fig:002">
+<img role="img" aria-label="Проверка работы Apache" data-src="image/2.png" style="width:70.0%" alt="Проверка работы Apache" />
+<figcaption aria-hidden="true">Проверка работы Apache</figcaption>
+</figure>
+</section>
+<section id="выполнение-лабораторной-работы-3" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>С помощью команды <code>ps auxZ | grep httpd</code> нашла веб-сервер
+Apache в списке процессов. Его контекст безопасности - httpd_t</p>
+<figure id="fig:003">
+<img role="img" aria-label="Контекст безопасности Apache" data-src="image/3.png" style="width:70.0%" alt="Контекст безопасности Apache" />
+<figcaption aria-hidden="true">Контекст безопасности Apache</figcaption>
+</figure>
+</section>
+<section id="выполнение-лабораторной-работы-4" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Просмотрела текущее состояние переключателей SELinux для Apache с
+помощью команды <code>sestatus -bigrep httpd</code></p>
+<figure id="fig:004">
+<img role="img" aria-label="Состояние переключателей SELinux" data-src="image/4.png" style="width:70.0%" alt="Состояние переключателей SELinux" />
+<figcaption aria-hidden="true">Состояние переключателей
+SELinux</figcaption>
+</figure>
+</section>
+<section id="выполнение-лабораторной-работы-5" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Просмотрела статистику по политике с помощью команды
+<code>seinfo</code>. Множество пользователей - 8, ролей - 39, типов -
+5135.</p>
+</section>
+<section id="выполнение-лабораторной-работы-6" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Типы поддиректорий, находящихся в директории <code>/var/www</code>, с
+помощью команды <code>ls -lZ /var/www</code> следующие: владелец - root,
+права на изменения только у владельца. Файлов в директории нет</p>
+</section>
+<section id="выполнение-лабораторной-работы-7" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Создать файл может только суперпользователь, поэтому от его имени
+создаем файл touch.html cо следующим содержанием:</p>
+</section>
+<section id="выполнение-лабораторной-работы-8" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Проверяю контекст созданного файла. По умолчанию это
+httpd_sys_content_t</p>
+</section>
+<section id="выполнение-лабораторной-работы-9" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Обращаюсь к файлу через веб-сервер, введя в браузере адрес
+http://127.0.0.1/test.html. Файл был успешно отображён</p>
+</section>
+<section id="выполнение-лабораторной-работы-10" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Изменяю контекст файла <code>/var/www/html/test.html</code> с
+<code>httpd_sys_content_t</code> на любой другой, к которому процесс
+httpd не должен иметь доступа, например, <code>на samba_share_t</code>:
+<code>chcon -t samba_share_t /var/www/html/test.html</code>
+<code>ls -Z /var/www/html/test.html</code> Контекст действительно
+поменялся</p>
+</section>
+<section id="выполнение-лабораторной-работы-11" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>При попытке отображения файла в браузере получаем сообщение об ошибке
+файл не был отображён, хотя права доступа позволяют читать этот файл
+любому пользователю, потому что установлен контекст, к которому процесс
+httpd не должен иметь доступа.</p>
+</section>
+<section id="выполнение-лабораторной-работы-12" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Чтобы запустить веб-сервер Apache на прослушивание ТСР-порта 81
+открываю файл /etc/httpd/httpd.conf для изменения. Нахожу строчку Listen
+80 и заменяю её на Listen 81.</p>
+</section>
+<section id="выполнение-лабораторной-работы-13" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Выполняю перезапуск веб-сервера Apache. Произошёл сбой</p>
+</section>
+<section id="выполнение-лабораторной-работы-14" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Просмотрите файлы <code>/var/log/http/error_log</code>,
+<code>/var/log/http/access_log</code> и
+<code>/var/log/audit/audit.log</code> и выясните, в каких файлах
+появились записи. Запись появилась в файлу error_log</p>
+</section>
+<section id="выполнение-лабораторной-работы-15" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Выполняю команду
+<code>semanage port -a -t http_port_t -р tcp 81</code> После этого
+проверяю список портов командой
+<code>semanage port -l | grep http_port_t</code> Порт 81 появился в
+списке</p>
+</section>
+<section id="выполнение-лабораторной-работы-16" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Перезапускаю сервер Apache</p>
+</section>
+<section id="выполнение-лабораторной-работы-17" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Теперь он работает, ведь мы внесли порт 81 в список портов
+<code>htttpd_port_t</code></p>
+</section>
+<section id="выполнение-лабораторной-работы-18" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Возвращаю в файле /etc/httpd/httpd.conf порт 80, вместо 81. Проверяю,
+что порт 81 удален, это правда.</p>
+</section>
+<section id="выполнение-лабораторной-работы-19" class="slide level2">
+<h2>Выполнение лабораторной работы</h2>
+<p>Далее удаляю файл test.html, проверяю, что он удален</p>
+</section>
+<section id="вывод" class="slide level2">
+<h2>Вывод</h2>
+<p>В ходе выполнения данной лабораторной работы были развиты навыки
+администрирования ОС Linux, получено первое практическое знакомство с
+технологией SELinux и проверена работа SELinux на практике совместно с
+веб-сервером Apache.</p>
+<p>:::</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freveal%2Ejs"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fnotes%2Fnotes%2Ejs"></script>
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fsearch%2Fsearch%2Ejs"></script>
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fzoom%2Fzoom%2Ejs"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
